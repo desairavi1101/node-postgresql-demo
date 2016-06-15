@@ -1,38 +1,33 @@
 module.exports = function(sequelize, DataTypes) {  
 
-  var TaskColumns = {
+  var UserColums = {
     id : {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       field : 'id'
     },
-    title: {
+    name: {
       type : DataTypes.STRING(100),
-      field : 'title'
+      field : 'name'
     }
     
   };
 
-  var TaskConfig = {
+  var UserConfig = {
     classMethods: {
       associate : function(models) {
-        Task.belongsTo(models.User, {
-          foreignKey : 'user_id',
-          as : 'User',
-          onUpdate : "CASCADE",
-          onDelete : "CASCADE" 
-        });
+        
       }
     },
-    tableName : 'task',
+    tableName : 'user',
 		timestamps : true,
 		paranoid: true, //Won't delete object, add colums deleted_at to table
 		underscored : true,
 		freezeTableName : true,
   };
 
-  var Task = sequelize.define("Task", TaskColumns, TaskConfig);
+  var User = sequelize.define("User", UserColums, UserConfig);
 
-  return Task;
+  return User;
 };
