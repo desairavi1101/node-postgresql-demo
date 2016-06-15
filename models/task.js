@@ -18,8 +18,6 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate : function(models) {
         Task.belongsTo(models.User, {
-          foreignKey : 'user_id',
-          as : 'User',
           onUpdate : "CASCADE",
           onDelete : "CASCADE" 
         });

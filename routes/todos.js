@@ -5,7 +5,9 @@ var models  = require('../models');
 
 // www.abc.com/todo/
 router.get('/', function(req,res,next) {
-	models.Task.findAll({})
+	models.Task.findAll({
+		include : [models.User]
+	})
 	.then(function(tasks) {
 		res.json(tasks);
 	}).error(function(error) {

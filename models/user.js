@@ -1,12 +1,6 @@
 module.exports = function(sequelize, DataTypes) {  
 
   var UserColums = {
-    id : {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      field : 'id'
-    },
     name: {
       type : DataTypes.STRING(100),
       field : 'name'
@@ -17,7 +11,10 @@ module.exports = function(sequelize, DataTypes) {
   var UserConfig = {
     classMethods: {
       associate : function(models) {
-        
+        User.hasMany(models.Task, {
+          onUpdate : "CASCADE",
+          onDelete : "CASCADE" 
+        });
       }
     },
     tableName : 'user',
